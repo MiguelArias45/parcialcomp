@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edit_text_destino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_destino"
+        android:inputType="text"
+        android:autofillHints="destination"
+        android:importantForAccessibility="yes"
+        android:padding="12dp"
+    android:minHeight="48dp"
+    android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/edit_text_fecha_inicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_fecha_inicio"
+        android:inputType="date"
+        android:autofillHints="startDate"
+        android:importantForAccessibility="yes"
+        android:padding="12dp"
+    android:minHeight="48dp"
+    android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/edit_text_fecha_fin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_fecha_fin"
+        android:inputType="date"
+        android:autofillHints="endDate"
+        android:importantForAccessibility="yes"
+        android:padding="12dp"
+    android:minHeight="48dp"
+    android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/edit_text_actividades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_actividades"
+        android:inputType="textMultiLine"
+        android:autofillHints="activities"
+        android:importantForAccessibility="yes"
+        android:padding="12dp"
+    android:minHeight="48dp"
+    android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/edit_text_presupuesto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_presupuesto"
+        android:inputType="numberDecimal"
+        android:autofillHints="budget"
+        android:importantForAccessibility="yes"
+        android:padding="12dp"
+    android:minHeight="48dp"
+    android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_guardar"
+        android:layout_marginTop="16dp"
+        android:padding="12dp"
+    android:minHeight="48dp"
+    android:importantForAccessibility="yes"/>
+</LinearLayout>

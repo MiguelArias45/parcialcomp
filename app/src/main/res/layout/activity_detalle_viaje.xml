@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edit_text_destino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_destino"
+    android:inputType="text"
+    android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/edit_text_fecha_inicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_fecha_inicio"
+    android:inputType="date"
+    android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/edit_text_fecha_fin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_fecha_fin"
+    android:inputType="date"
+    android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/edit_text_actividades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_actividades"
+    android:inputType="text"
+    android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/edit_text_presupuesto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_presupuesto"
+    android:inputType="number"
+    android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/button_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_update_text" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_delete_text" />
+
+    <Button
+        android:id="@+id/button_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_edit_text" />
+</LinearLayout>

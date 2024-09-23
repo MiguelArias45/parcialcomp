@@ -1,0 +1,20 @@
+<resources>
+    <!-- Hints for EditText -->
+    <string name="hint_destino">Destino</string>
+    <string name="hint_fecha_inicio">Fecha de Inicio</string>
+    <string name="hint_fecha_fin">Fecha de Fin</string>
+    <string name="hint_actividades">Actividades</string>
+    <string name="hint_presupuesto">Presupuesto</string>
+
+    <!-- Button texts -->
+    <string name="button_guardar">Guardar</string>
+    <string name="button_update_text">Actualizar</string>
+    <string name="button_delete_text">Eliminar</string>
+    <string name="button_edit_text">Editar</string>
+
+    <!-- General strings -->
+    <string name="app_name">Parcial 1</string>
+    <string name="destino">Destino</string>
+    <string name="fecha">Fecha</string>
+    <string name="presupuesto">Presupuesto</string>
+</resources>
