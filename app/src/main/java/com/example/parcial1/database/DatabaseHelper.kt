@@ -5,13 +5,16 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.content.ContentValues
 import android.database.Cursor
+import android.util.Log
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 // Clase para manejar la base de datos
-class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DatabaseHelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         private const val DATABASE_NAME = "viajes.db"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2 // Aumentar la versión
         private const val TABLE_VIAJES = "viajes"
 
         const val COLUMN_ID = "id"
@@ -49,6 +52,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         db.insert(TABLE_VIAJES, null, values)
         db.close()
+        exportViajesToFile("viajes.txt") // Exportar a archivo después de agregar
     }
 
     fun getAllViajes(): List<Viaje> {
@@ -58,15 +62,29 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         if (cursor.moveToFirst()) {
             do {
-                val viaje = Viaje(
-                    id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID)),
-                    destino = cursor.getString(cursor.getColumnIndex(COLUMN_DESTINO)),
-                    fechaInicio = cursor.getString(cursor.getColumnIndex(COLUMN_FECHA_INICIO)),
-                    fechaFin = cursor.getString(cursor.getColumnIndex(COLUMN_FECHA_FIN)),
-                    actividades = cursor.getString(cursor.getColumnIndex(COLUMN_ACTIVIDADES)),
-                    presupuesto = cursor.getDouble(cursor.getColumnIndex(COLUMN_PRESUPUESTO))
-                )
-                viajes.add(viaje)
+                // Obtener índices
+                val idIndex = cursor.getColumnIndex(COLUMN_ID)
+                val destinoIndex = cursor.getColumnIndex(COLUMN_DESTINO)
+                val fechaInicioIndex = cursor.getColumnIndex(COLUMN_FECHA_INICIO)
+                val fechaFinIndex = cursor.getColumnIndex(COLUMN_FECHA_FIN)
+                val actividadesIndex = cursor.getColumnIndex(COLUMN_ACTIVIDADES)
+                val presupuestoIndex = cursor.getColumnIndex(COLUMN_PRESUPUESTO)
+
+                // Validar que los índices sean válidos
+                if (idIndex != -1 && destinoIndex != -1 && fechaInicioIndex != -1 &&
+                    fechaFinIndex != -1 && actividadesIndex != -1 && presupuestoIndex != -1) {
+                    val viaje = Viaje(
+                        id = cursor.getInt(idIndex),
+                        destino = cursor.getString(destinoIndex),
+                        fechaInicio = cursor.getString(fechaInicioIndex),
+                        fechaFin = cursor.getString(fechaFinIndex),
+                        actividades = cursor.getString(actividadesIndex),
+                        presupuesto = cursor.getDouble(presupuestoIndex)
+                    )
+                    viajes.add(viaje)
+                } else {
+                    Log.e("DatabaseHelper", "Invalid column index found")
+                }
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -74,10 +92,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return viajes
     }
 
-    fun deleteViaje(id: Int) {
+    fun deleteViaje(id: Int): Int {
         val db = writableDatabase
-        db.delete(TABLE_VIAJES, "$COLUMN_ID = ?", arrayOf(id.toString()))
+        val result = db.delete(TABLE_VIAJES, "id = ?", arrayOf(id.toString()))
         db.close()
+        exportViajesToFile("viajes.txt") // Exportar a archivo después de eliminar
+        return result // Devuelve el número de filas afectadas
     }
 
     fun updateViaje(viaje: Viaje) {
@@ -91,6 +111,51 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         db.update(TABLE_VIAJES, values, "$COLUMN_ID = ?", arrayOf(viaje.id.toString()))
         db.close()
+        exportViajesToFile("viajes.txt") // Exportar a archivo después de actualizar
+    }
+
+    // Exportar viajes a un archivo de texto
+    private fun exportViajesToFile(fileName: String) {
+        val viajes = getAllViajes()
+        val fileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE)
+
+        viajes.forEach { viaje ->
+            val viajeData = "${viaje.id},${viaje.destino},${viaje.fechaInicio},${viaje.fechaFin},${viaje.actividades},${viaje.presupuesto}\n"
+            fileOutputStream.write(viajeData.toByteArray())
+        }
+
+        fileOutputStream.close()
+    }
+
+    // Buscar viajes en el archivo de texto
+    fun searchViajesInFile(fileName: String, searchTerm: String): List<Viaje> {
+        val viajesEncontrados = mutableListOf<Viaje>()
+        val fileInputStream = context.openFileInput(fileName)
+        val inputStreamReader = InputStreamReader(fileInputStream)
+        val bufferedReader = BufferedReader(inputStreamReader)
+
+        bufferedReader.forEachLine { line ->
+            val datos = line.split(",")
+            // Verificar si el término de búsqueda está en el destino o actividades
+            if (datos.size == 6 && (datos[1].contains(searchTerm, true) || datos[4].contains(searchTerm, true))) {
+                val viaje = Viaje(
+                    id = datos[0].toInt(),
+                    destino = datos[1],
+                    fechaInicio = datos[2],
+                    fechaFin = datos[3],
+                    actividades = datos[4],
+                    presupuesto = datos[5].toDouble()
+                )
+                viajesEncontrados.add(viaje)
+            }
+        }
+
+        bufferedReader.close()
+        return viajesEncontrados
     }
 }
+
+
+
+
 

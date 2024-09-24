@@ -16,7 +16,7 @@
         <!-- Actividad principal -->
         <activity
             android:name=".MainActivity"
-            android:exported="true"> <!-- Especifica si puede ser accedida por otras apps -->
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -26,11 +26,15 @@
         <!-- Actividades adicionales -->
         <activity
             android:name=".activities.AddViajeActivity"
-            android:exported="false" /> <!-- Cambia según sea necesario -->
+            android:exported="false" />
         <activity
             android:name=".activities.ViajeDetailActivity"
-            android:exported="false" /> <!-- Cambia según sea necesario -->
+            android:exported="false" />
+        <activity
+            android:name=".activities.SearchViajeActivity"
+            android:exported="false" />
 
     </application>
 
 </manifest>
+

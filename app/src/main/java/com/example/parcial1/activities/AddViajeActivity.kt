@@ -62,6 +62,7 @@ class AddViajeActivity : AppCompatActivity() {
             presupuesto = editTextPresupuesto.text.toString().toDoubleOrNull() ?: 0.0
         )
         databaseHelper.addViaje(nuevoViaje)
+        setResult(RESULT_OK) // Devolver resultado OK
         finish() // Regresar a la lista de viajes
     }
 
@@ -76,9 +77,11 @@ class AddViajeActivity : AppCompatActivity() {
                 presupuesto = editTextPresupuesto.text.toString().toDoubleOrNull() ?: 0.0
             )
             databaseHelper.updateViaje(updatedViaje)
+            setResult(RESULT_OK) // Devolver resultado OK
             finish() // Regresar a la lista de viajes
         }
     }
 }
+
 
 

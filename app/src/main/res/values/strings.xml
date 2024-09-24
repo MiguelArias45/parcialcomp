@@ -8,8 +8,9 @@
 
     <!-- Button texts -->
     <string name="button_guardar">Guardar</string>
+    <string name="button_eliminar">Guardar</string>
     <string name="button_update_text">Actualizar</string>
-    <string name="button_delete_text">Eliminar</string>
+    <string name="button_delete_text">Eliminar</string> <!-- Este es el que ya tienes -->
     <string name="button_edit_text">Editar</string>
 
     <!-- General strings -->

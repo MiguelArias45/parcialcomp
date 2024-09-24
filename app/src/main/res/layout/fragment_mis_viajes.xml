@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/fragment_mis_viajes.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,5 +8,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_viajes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp" /> <!-- Margen opcional para separar el botón de la lista -->
+
 </LinearLayout>
+

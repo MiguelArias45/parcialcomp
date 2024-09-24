@@ -7,25 +7,33 @@
 
     <TextView
         android:id="@+id/text_view_destino"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/destino"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/text_view_fecha"
-        android:layout_width="wrap_content"
+        android:id="@+id/text_view_fecha_inicio"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/fecha"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_view_fecha_fin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_view_actividades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/text_view_presupuesto"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/presupuesto"
-        android:textSize="14sp" />
-
+        android:textSize="16sp" />
 </LinearLayout>
 

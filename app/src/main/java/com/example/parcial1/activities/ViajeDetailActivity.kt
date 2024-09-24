@@ -2,7 +2,6 @@ package com.example.parcial1.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +25,7 @@ class ViajeDetailActivity : AppCompatActivity() {
 
         databaseHelper = DatabaseHelper(this)
 
+        // Inicialización de los EditText y Button
         editTextDestino = findViewById(R.id.edit_text_destino)
         editTextFechaInicio = findViewById(R.id.edit_text_fecha_inicio)
         editTextFechaFin = findViewById(R.id.edit_text_fecha_fin)
@@ -33,18 +33,19 @@ class ViajeDetailActivity : AppCompatActivity() {
         editTextPresupuesto = findViewById(R.id.edit_text_presupuesto)
         buttonDelete = findViewById(R.id.button_delete)
 
+        // Obtención del ID del viaje desde el Intent
         viajeId = intent.getIntExtra("viaje_id", -1).takeIf { it != -1 }
 
         viajeId?.let {
-            loadViajeDetails(it)
+            loadViajeDetails(it) // Cargar detalles del viaje
         }
 
         findViewById<Button>(R.id.button_update).setOnClickListener {
-            updateViaje()
+            updateViaje() // Actualizar los detalles del viaje
         }
 
         buttonDelete.setOnClickListener {
-            viajeId?.let { id -> deleteViaje(id) }
+            viajeId?.let { id -> deleteViaje(id) } // Eliminar el viaje
         }
 
         findViewById<Button>(R.id.button_edit).setOnClickListener {
@@ -52,13 +53,14 @@ class ViajeDetailActivity : AppCompatActivity() {
                 val intent = Intent(this, AddViajeActivity::class.java).apply {
                     putExtra("viaje_id", id)
                 }
-                startActivity(intent)
+                startActivity(intent) // Ir a la actividad para editar el viaje
             }
         }
     }
 
     private fun loadViajeDetails(id: Int) {
         val viaje = databaseHelper.getAllViajes().first { it.id == id }
+        // Cargar los detalles del viaje en los EditText
         editTextDestino.setText(viaje.destino)
         editTextFechaInicio.setText(viaje.fechaInicio)
         editTextFechaFin.setText(viaje.fechaFin)
@@ -76,13 +78,13 @@ class ViajeDetailActivity : AppCompatActivity() {
                 actividades = editTextActividades.text.toString(),
                 presupuesto = editTextPresupuesto.text.toString().toDoubleOrNull() ?: 0.0
             )
-            databaseHelper.updateViaje(updatedViaje)
+            databaseHelper.updateViaje(updatedViaje) // Actualizar el viaje en la base de datos
             finish() // Regresar a la lista de viajes
         }
     }
 
     private fun deleteViaje(id: Int) {
-        databaseHelper.deleteViaje(id)
+        databaseHelper.deleteViaje(id) // Eliminar el viaje de la base de datos
         finish() // Regresar a la lista de viajes
     }
 }

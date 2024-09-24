@@ -14,8 +14,8 @@
         android:autofillHints="destination"
         android:importantForAccessibility="yes"
         android:padding="12dp"
-    android:minHeight="48dp"
-    android:layout_marginBottom="16dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/edit_text_fecha_inicio"
@@ -26,8 +26,8 @@
         android:autofillHints="startDate"
         android:importantForAccessibility="yes"
         android:padding="12dp"
-    android:minHeight="48dp"
-    android:layout_marginBottom="16dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/edit_text_fecha_fin"
@@ -38,8 +38,8 @@
         android:autofillHints="endDate"
         android:importantForAccessibility="yes"
         android:padding="12dp"
-    android:minHeight="48dp"
-    android:layout_marginBottom="16dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/edit_text_actividades"
@@ -50,8 +50,8 @@
         android:autofillHints="activities"
         android:importantForAccessibility="yes"
         android:padding="12dp"
-    android:minHeight="48dp"
-    android:layout_marginBottom="16dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/edit_text_presupuesto"
@@ -62,8 +62,8 @@
         android:autofillHints="budget"
         android:importantForAccessibility="yes"
         android:padding="12dp"
-    android:minHeight="48dp"
-    android:layout_marginBottom="16dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/button_save"
@@ -72,6 +72,9 @@
         android:text="@string/button_guardar"
         android:layout_marginTop="16dp"
         android:padding="12dp"
-    android:minHeight="48dp"
-    android:importantForAccessibility="yes"/>
+        android:minHeight="48dp"
+        android:importantForAccessibility="yes"/>
+
+    <!-- Agregamos el botón de eliminar -->
 </LinearLayout>
+
